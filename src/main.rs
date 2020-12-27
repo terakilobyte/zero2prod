@@ -1,14 +1,6 @@
-fn main() {
-    println!("Hello, world!");
-    println!("Hell yeah it works!");
-    println!("this should cause the previous line to error")
-}
+use zero2prod::run;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2, 2);
-        println!("foo!@")
-    }
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    run().await
 }
