@@ -19,6 +19,10 @@ log = "0.4.11"
 env_logger = "0.8.2"
 actix-rt = "2.0.2"
 
+[dev-dependencies]
+reqwest = "0.11"
+tokio = "1.2"
+
 [dev-dependencies.cargo-husky]
 version = "1"
 default-features = false
