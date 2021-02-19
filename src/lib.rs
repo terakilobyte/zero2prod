@@ -1,5 +1,6 @@
 use actix_web::{dev::Server, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
 use std::env;
+use std::net::TcpListener;
 
 extern crate log;
 
@@ -20,12 +21,12 @@ fn app_config(config: &mut web::ServiceConfig) {
     );
 }
 
-pub fn run() -> Result<Server, std::io::Error> {
+pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
     env::set_var("RUST_LOG", "actix_web=debug,actix_server=info");
     env_logger::init();
 
     let server = HttpServer::new(|| App::new().configure(app_config))
-        .bind("127.0.0.1:8080")?
+        .listen(listener)?
         .run();
 
     Ok(server)
